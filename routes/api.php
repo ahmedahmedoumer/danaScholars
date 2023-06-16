@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\scholars\getScholars;
+use App\Http\Controllers\DashBoard\askedQuestions;
+use App\Http\Controllers\institutions\getInstitutions;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +22,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+  Route::get('/getScholars',[getScholars::class,'getScholars']);
+  Route::get('/askedQuestions',[askedQuestions::class,'getAskedQuestions']);
+  Route::get('/getInstitutions',[getInstitutions::class, 'getInstitutions']);
+  Route::get('/getScholars/detail',[getScholars::class,'getScholarsDetail']);
+

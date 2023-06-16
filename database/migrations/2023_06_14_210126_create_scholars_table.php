@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('fname')->nullable();
             $table->string('lname')->nullable();
-            $table->string('mothersName')->nullable();
-            $table->string('birthDate')->nullable();
-            $table->data('deathDate')->nullable();
+            $table->string('mothers_name')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->date('death_date')->nullable();
             $table->string('photo')->nullable();
-            $table->string('birthPlace')->nullable();
+            $table->string('birth_place')->nullable();
             $table->string('family')->nullable();
             $table->string('children')->nullable();
             $table->string('founder')->nullable();
