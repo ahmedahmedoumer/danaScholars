@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\dashBoard;
+namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\askedQuestions;
 
-class askedQuestions extends Controller
+class getAskedQuestions extends Controller
 {
     //
     public function getAskedQuestions(Request $request){

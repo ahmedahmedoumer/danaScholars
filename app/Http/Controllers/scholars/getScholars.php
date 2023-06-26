@@ -21,7 +21,7 @@ class getScholars extends Controller
      }
      public function getScholarsDetail(Request $request){
              $scholarsId=$request->query('scholarsId');
-             $scholarsData=scholars::with('educatioDetail.educationCategory')->find($scholarsId);
+             $scholarsData=scholars::with('educationDetail.educationCategories','educationDetail.scholarsInstitute')->find($scholarsId);
              return $scholarsData?  response()->json($scholarsData, 200)
                                  :  response()->json($scholarsData, 200);
      }

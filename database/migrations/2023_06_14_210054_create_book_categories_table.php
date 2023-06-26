@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('book_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('decription')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
