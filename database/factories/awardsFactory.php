@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\awards>
  */
@@ -19,8 +20,8 @@ class awardsFactory extends Factory
         return [
             //
             'name_of_awards'=>$this->faker->name(),
-            'award_date'=>now(),
-            'award_description'=>$this->faker->sentence()
+            'award_date'=>now()->toDateString(),
+            'award_description'=>$this->faker->sentence(),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 use App\models\bookCategory;
+use App\models\scholars;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,16 +17,18 @@ class booksFactory extends Factory
      */
     public function definition(): array
     {
-        $id=bookCategory::pluck('id');
+        $bookCategoryId=bookCategory::pluck('id');
+        $scholarsId=scholars::pluck('id');
+
         return [
             //
             'book_name'=>$this->faker->name(),
-            'author'=>$this->faker->name(),
+            'author'=>$this->faker->randomElement($scholarsId),
             'description'=>$this->faker->sentence(),
             'sourceFile'=>'sourceFile.pdf',
             'written_on'=>now(),
             'img'=>'user1.png',
-            'book_category_id'=>$this->faker->randomElement($id)
+            'book_category_id'=>$this->faker->randomElement($bookCategoryId)
 
         ];
     }
