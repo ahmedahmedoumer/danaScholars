@@ -16,6 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('awards_id')->nullable();
             $table->unsignedBigInteger('institutions_id')->nullable();
             $table->string('description')->nullable();
+            $table->foreign('awards_id')->references('id')
+                    ->on('awards')->onDelete('cascade');
+            $table->foreign('institutions_id')->references('id')
+                    ->on('institutions')->onDelete('cascade');
             $table->timestamps();
         });
     }
