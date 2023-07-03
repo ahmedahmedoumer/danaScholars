@@ -6,6 +6,7 @@ use App\Http\Controllers\scholars\getScholars;
 use App\Http\Controllers\dashBoard\getAskedQuestions;
 use App\Http\Controllers\institutions\getInstitution;
 use App\Http\Controllers\book\bookInformation;
+use App\Http\Controllers\storage\storageController;
 
 
 
@@ -33,3 +34,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   Route::get('/download-book/{fileName}',[bookInformation::class,'downloadBooks']);
   Route::get('/all-books',[bookInformation::class,'getAllBooks']);
   Route::get('/get-book-detail',[bookInformation::class,'getBookDetail']);
+  Route::get('get-image-retrival',[storageController::class,'imageRetrive']);
