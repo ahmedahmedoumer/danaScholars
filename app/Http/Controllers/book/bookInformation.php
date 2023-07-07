@@ -34,6 +34,5 @@ class bookInformation extends Controller
       $findBook=books::with('booksCategory')->where('id',$bookId)->first();
       return $findBook  ? response()->json($findBook,200)
                         : response()->json($findBook,400);
-
     }
 }   

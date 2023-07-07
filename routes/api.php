@@ -6,9 +6,7 @@ use App\Http\Controllers\scholars\getScholars;
 use App\Http\Controllers\dashBoard\getAskedQuestions;
 use App\Http\Controllers\institutions\getInstitution;
 use App\Http\Controllers\book\bookInformation;
-
-
-
+use App\Http\Controllers\contact\contactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   Route::get('/getInstitutions',[getInstitution::class, 'getAllInstitution']);
   Route::get('/institution-detail',[getInstitution::class,'getInstitutionDetail']);
   Route::get('/download-book/{fileName}',[bookInformation::class,'downloadBooks']);
-  Route::get('/all-books',[bookInformation::class,'getAllBooks']);
-  Route::get('/get-book-detail',[bookInformation::class,'getBookDetail']);
+  Route::get('/books',[bookInformation::class,'getAllBooks'])->name('getAllBooks');
+  Route::get('/get-book',[bookInformation::class,'getBookDetail'])->name('getBook/detail');
+  Route::post('/contact',[contactController::class,'sendMessage'])->name('contact');
