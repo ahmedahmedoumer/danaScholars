@@ -7,6 +7,7 @@ use App\Http\Controllers\dashBoard\getAskedQuestions;
 use App\Http\Controllers\institutions\getInstitution;
 use App\Http\Controllers\book\bookInformation;
 use App\Http\Controllers\contact\contactController;
+use App\Http\Controllers\storage\storageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   Route::get('/books',[bookInformation::class,'getAllBooks'])->name('getAllBooks');
   Route::get('/get-book',[bookInformation::class,'getBookDetail'])->name('getBook/detail');
   Route::post('/contact',[contactController::class,'sendMessage'])->name('contact');
+  
+  Route::get('/all-books',[bookInformation::class,'getAllBooks']);
+  Route::get('/get-book-detail',[bookInformation::class,'getBookDetail']);
+  Route::get('get-image-retrival',[storageController::class,'imageRetrive']);
