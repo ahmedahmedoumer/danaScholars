@@ -9,7 +9,11 @@ class scholars extends Model
 {
     use HasFactory;
     public function educationDetail()
-    {
+      {
         return $this->hasOne(educationDetails::class);
-    }
+      }
+    public function scholaresInstitute()
+      {
+        return $this->hasMany(scholarsInstitute::class,'scholars_id');
+      }
 }

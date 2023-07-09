@@ -5,6 +5,7 @@ namespace App\Http\Controllers\scholars;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\scholars;
+use App\Models\scholarsInstitute;
 
 class getScholars extends Controller
 {
@@ -25,5 +26,12 @@ class getScholars extends Controller
              return $scholarsData?  response()->json($scholarsData, 200)
                                  :  response()->json($scholarsData, 200);
      }
+     public function scholarsInstitute(Request $request)
+       {
+         $scholarsId=$request->query('scholarsId');
+         $data=scholarsInstitute::with('institute.institutionAwards')->where('scholars_id',$scholarsId)->get();
+         return $data ? response()->json($data,200)
+                      : response()->json('',401);
+       } 
 
 }

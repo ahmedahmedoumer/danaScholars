@@ -20,7 +20,7 @@ class contactMail extends Mailable
      */
     public $data;
     public $name;
-    public $message;
+    public $message=" ";
     public $phone;
     public function __construct($data)
     {
@@ -39,7 +39,7 @@ class contactMail extends Mailable
     {
         return new Envelope(
             subject: 'Contact Mail',
-            from:new Address($this->data['email']),
+            from:new Address($this->data['email'],$this->data['name']),
         );
     }
 
@@ -47,15 +47,15 @@ class contactMail extends Mailable
      * Get the message content definition.
      */
     public function content(): Content
-{
-    return new Content(
-        view('email.contactEmail')->with([
-            'message' => $this->data['message'],
-            'phone' => $this->data['phone'],
-        ])
-    );
-}
-
+    {
+        return new Content(
+            view: 'email.contactEmail',
+            with:[
+                'message'=>$this->message,
+                'phone'=>$this->phone
+            ]
+        );
+    }
 
     /**
      * Get the attachments for the message.
