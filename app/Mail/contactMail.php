@@ -8,7 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-
+use Illuminate\Mail\Mailables\Address;
+use PharIo\Manifest\Email;
 class contactMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -16,9 +17,17 @@ class contactMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public $data;
+    public $name;
+    public $message=" ";
+    public $phone;
+    public function __construct($data)
     {
         //
+        $this->data=$data;
+        $this->name=$data['name'];
+        $this->phone=$data['phone'];
+        $this->message=$data['message'];
     }
 
     /**
@@ -28,6 +37,7 @@ class contactMail extends Mailable
     {
         return new Envelope(
             subject: 'Contact Mail',
+            from:new Address($this->data['email'],$this->data['name']),
         );
     }
 
@@ -37,7 +47,11 @@ class contactMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails',
+            view: 'email.contactEmail',
+            with:[
+                'message'=>$this->message,
+                'phone'=>$this->phone
+            ]
         );
     }
 
