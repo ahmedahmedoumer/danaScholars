@@ -17,5 +17,9 @@ class educationDetails extends Model
     {
         return $this->belongsTo(scholarsInstitute::class,'institutions_id');
     }
+    public function scholars()
+    {
+        return $this->belongsTo(scholars::class);
+    }
     
 }

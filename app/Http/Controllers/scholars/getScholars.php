@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\scholars;
 use App\Models\scholarsInstitute;
+use App\Models\educationDetails;
 
 class getScholars extends Controller
 {
@@ -22,16 +23,23 @@ class getScholars extends Controller
      }
      public function getScholarsDetail(Request $request){
              $scholarsId=$request->query('scholarsId');
-             $scholarsData=scholars::with('educationDetail.educationCategories','educationDetail.scholarsInstitute')->find($scholarsId);
+             $scholarsData=scholars::find($scholarsId);
              return $scholarsData?  response()->json($scholarsData, 200)
-                                 :  response()->json($scholarsData, 200);
+                                 :  response()->json(null,404);
      }
      public function scholarsInstitute(Request $request)
        {
          $scholarsId=$request->query('scholarsId');
          $data=scholarsInstitute::with('institute.institutionAwards')->where('scholars_id',$scholarsId)->get();
-         return $data ? response()->json($data,200)
-                      : response()->json('',401);
+         return $data->count()!==0 ? response()->json($data,200)
+                      : response()->json(null,404);
        } 
+     public function getEducationInformation(Request $request)
+        {
+            $scholarsId=$request->query('scholarsId');
+            $scholarsEducation=educationDetails::with('educationCategories')->where('scholars_id',$scholarsId)->get();
+            return $scholarsEducation->count()!==0 ? response()->json($scholarsEducation,200)
+                      : response()->json(null,404);
+        }
 
 }

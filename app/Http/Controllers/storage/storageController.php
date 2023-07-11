@@ -14,14 +14,13 @@ class storageController extends Controller
 
     public function imageRetrive($fileName)
      {
-        $filePath=storage_path('app/public/images',$fileName);
-         if(!file_exists($filePath))
+        $filePath=storage_path('app/public/images/'.$fileName);
+         if(!File::exists($filePath))
          {
            abort(404); 
          }
-
          $file=File::get($filePath);
          $fileType=File::mimeType($filePath);
-         return response()->json($file, 200,['content-type',$fileType]);        
+         return response($file, 200,['content-type',$fileType]);        
      }
 }

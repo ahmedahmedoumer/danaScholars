@@ -13,4 +13,8 @@ class scholarsInstitute extends Model
       {
         return $this->belongsTo(institution::class,'institutions_id');
       }
+      public function scholars()
+      {
+        return $this->belongsTo(scholars::class);
+      }
 }

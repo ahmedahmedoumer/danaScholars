@@ -15,10 +15,14 @@ class institution extends Model
     }
     public function instituteStudents()
     {
-        return $this->hasMany(scholarsInstitute::class,'institutions_id');
+        return $this->hasMany(scholarsInstitute::class,'institutions_id')->where('relation_title','student');
     }
     public function institutionAwards()
     {
         return $this->hasMany(instituteAwards::class,'institutions_id');
+    }
+    public function scholars()
+    {
+        return $this->hasMany(scholars::class,'scholars_id');
     }
 }

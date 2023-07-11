@@ -27,17 +27,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
   Route::get('/getScholars',[getScholars::class,'getScholars']);
   Route::get('/getScholars/detail',[getScholars::class,'getScholarsDetail']);
-  Route::get('/scholars/institution',[getScholars::class,'scholarsInstitute']);
+  Route::get('/scholars/institute-information',[getScholars::class,'scholarsInstitute']);
 
-  Route::get('/getScholars/book-information',[bookInformation::class,'getBookInformation']);
+  Route::get('/scholars/education-information',[getScholars::class,'getEducationInformation']);
+  Route::get('/scholars/book-information',[bookInformation::class,'getBookInformation']);
+
 
   Route::get('/getInstitutions',[getInstitution::class, 'getAllInstitution']);
   Route::get('/institution-detail',[getInstitution::class,'getInstitutionDetail']);
+
   Route::get('/download-book/{fileName}',[bookInformation::class,'downloadBooks']);
-  Route::get('/books',[bookInformation::class,'getAllBooks'])->name('getAllBooks');
-  Route::get('/get-book',[bookInformation::class,'getBookDetail'])->name('getBook/detail');
+  Route::get('/get-books',[bookInformation::class,'getAllBooks']);
   Route::post('/contact',[contactController::class,'sendMessage'])->name('contact');
   
   Route::get('/all-books',[bookInformation::class,'getAllBooks']);
-  Route::get('/get-book-detail',[bookInformation::class,'getBookDetail']);
-  Route::get('get-image-retrival',[storageController::class,'imageRetrive']);
+  Route::get('/get-books-detail',[bookInformation::class,'getBookDetail']);
+  Route::get('/get-image-retrival/{fileName}',[storageController::class,'imageRetrive']);

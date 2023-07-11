@@ -5,7 +5,8 @@ namespace App\Http\Controllers\book;
 use App\Http\Controllers\Controller;
 use App\Models\books;
 use Illuminate\Http\Request;
-use illuminate\support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
+
 
 class bookInformation extends Controller
 {
@@ -15,13 +16,13 @@ class bookInformation extends Controller
         $scholarsId=$request->query('scholarsId');
         $books=books::with('booksCategory')->where('author',$scholarsId)->get();
         return $books  ? response()->json($books,200)
-                       : response()->json($books,400);
+                       : response()->json(null,400);
     }
     public function downloadBooks($fileName)
     {
-      $filePath='sourceFile/'.$fileName;
+      $filePath='public/books/'.$fileName;
       return Storage::exists($filePath) ? Storage::download($filePath,$fileName)
-                                        : response()->json('fileNotFound',404);
+                                        : abort(404);
     }
     public function getAllBooks()
     {
