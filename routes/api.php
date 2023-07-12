@@ -43,3 +43,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   Route::get('/all-books',[bookInformation::class,'getAllBooks']);
   Route::get('/get-books-detail',[bookInformation::class,'getBookDetail']);
   Route::get('/get-image-retrival/{fileName}',[storageController::class,'imageRetrive']);
+
+  Route::get('/books/randomSelect',[bookInformation::class,'randomBooksSelector']);
+  Route::get('/scholars/randomSelect',[getScholars::class,'randomScholarsSelector']);
+  Route::get('/search-scholars',[getScholars::class,'searchScholars']);
+
