@@ -36,4 +36,8 @@ class bookInformation extends Controller
       return $findBook  ? response()->json($findBook,200)
                         : response()->json($findBook,400);
     }
+    public function randomBooksSelector(){
+        return response()->json(books::all()->random(5), 200);
+        
+    }
 }   
