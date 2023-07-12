@@ -41,5 +41,18 @@ class getScholars extends Controller
             return $scholarsEducation->count()!==0 ? response()->json($scholarsEducation,200)
                       : response()->json(null,404);
         }
+        public function randomScholarsSelector()
+        {
+           return response()->json(scholars::all()->random(3), 200);
+        }
+        public function searchScholars(Request $request)
+        {
+          $scholarsName=$request->query('scholarsName');
+          $scholars=scholars::where('fname','LIKE','%'.$scholarsName.'%')
+                            ->orWhere('lname','LIKE','%'.$scholarsName.'%')
+                            ->get();
+             return ($scholars->count())!==0 ?  response()->json($scholars, 200)
+                              :  response()->json('notFound',404);
+        }
 
 }
