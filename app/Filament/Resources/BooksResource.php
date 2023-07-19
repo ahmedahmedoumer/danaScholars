@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\BooksResource\Pages;
+use App\Filament\Resources\BooksResource\RelationManagers;
+use App\Models\Books;
+use Filament\Forms;
+use Filament\Resources\Form;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Resources\Table;
+use Filament\Tables;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+
+class BooksResource extends Resource
+{
+    protected static ?string $model = Books::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-collection';
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                //
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                //
+                TextColumn::make('id')->sortable()->searchable(),
+                TextColumn::make('book_name')->sortable()->searchable(),
+                TextColumn::make('AuthorName.fname')->sortable()->searchable(),
+                // TextColumn::make('description')->limit(10)->sortable()->searchable(),
+                TextColumn::make('booksCategory.name')->sortable()->searchable(),
+                TextColumn::make('img')->sortable()->searchable(),
+                TextColumn::make('written_on')->sortable()->searchable(),
+            ])
+            ->filters([
+                //
+            ])
+            ->actions([
+                Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
+    }
+    
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+    
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListBooks::route('/'),
+            'create' => Pages\CreateBooks::route('/create'),
+            'edit' => Pages\EditBooks::route('/{record}/edit'),
+        ];
+    }    
+}

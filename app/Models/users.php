@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class users extends Model
 {
     use HasFactory;
+    public function author(){
+        return $this->hasOne(users::class);
+    }
 }
