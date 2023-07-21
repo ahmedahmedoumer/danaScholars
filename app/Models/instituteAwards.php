@@ -10,6 +10,7 @@ use App\Models\awards;
 class instituteAwards extends Model
 {
     use HasFactory;
+    protected $fillable=['awards_id','institutions_id','description','created_at'];
     public function institutionName()
     {
         return $this->belongsTo(institution::class,'institutions_id');

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class institution extends Model
 {
     use HasFactory;
+    protected $fillable=['name','location','founded_on','type_of_institution','description','status'];
 
     public function institutionAward()
     {

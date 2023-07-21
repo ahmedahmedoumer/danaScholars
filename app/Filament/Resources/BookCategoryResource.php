@@ -4,11 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookCategoryResource\Pages;
 use App\Filament\Resources\BookCategoryResource\RelationManagers;
-use App\Models\BookCategory;
+use App\Models\bookCategory;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BookCategoryResource extends Resource
 {
-    protected static ?string $model = BookCategory::class;
+    protected static ?string $model = bookCategory::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -25,6 +26,9 @@ class BookCategoryResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')->required()->label('category name'),
+                TextInput::make('description')->required()->label('category description'),
+
             ]);
     }
 

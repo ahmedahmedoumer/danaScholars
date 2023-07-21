@@ -4,11 +4,13 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AskedQuestionsResource\Pages;
 use App\Filament\Resources\AskedQuestionsResource\RelationManagers;
-use App\Models\AskedQuestions;
+use App\Models\askedQuestions;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TextArea;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AskedQuestionsResource extends Resource
 {
-    protected static ?string $model = AskedQuestions::class;
+    protected static ?string $model = askedQuestions::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -25,6 +27,11 @@ class AskedQuestionsResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('asked_questions')->required()->label('asked question'),
+                TextInput::make('answers')->required()->label('dnswer'),
+                TextArea::make('description')->required()->label('description'),
+
+                
             ]);
     }
 
