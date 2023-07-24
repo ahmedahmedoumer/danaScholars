@@ -23,9 +23,10 @@ class scholarsFactory extends Factory
             'mothers_name'=>$this->faker->name(),
             'birth_date'=>now(),
             'death_date'=>now(),
-            'photo'=>'user1.png',
+            'photo'=>'images.png',
             'birth_place'=>$this->faker->address(),
             'family'=>$this->faker->name(),
+            'knowledge'=>$this->faker->title(),
             'children'=>$this->faker->sentence(),
             'founder'=>$this->faker->randomElement(['company1','company2','company3'])
         ];

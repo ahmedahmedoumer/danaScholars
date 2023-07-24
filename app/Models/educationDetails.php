@@ -11,7 +11,7 @@ class educationDetails extends Model
     use HasFactory;
     public function educationCategories()
     {
-        return $this->belongsTo(educationCategories::class);
+        return $this->belongsTo(educationCategories::class,'education_categories_id');
     }
     public function scholarsInstitute()
     {
@@ -20,6 +20,10 @@ class educationDetails extends Model
     public function scholars()
     {
         return $this->belongsTo(scholars::class);
+    }
+    public function institution()
+    {
+        return $this->belongsTo(institution::class,'institutions_id');
     }
     
 }

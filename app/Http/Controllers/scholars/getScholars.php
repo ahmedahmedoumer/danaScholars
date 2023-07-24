@@ -15,7 +15,8 @@ class getScholars extends Controller
      public function getScholars(Request $request){
         try {
             $page=$request->query('page');
-            $scholarsData=scholars::paginate(page:$page,perPage:9);
+            $perPage=$request->query('perPage');
+            $scholarsData=scholars::paginate(page:$page,perPage:$perPage);
             return response()->json($scholarsData, 200);
         } catch (\Throwable $th) {
             return response()->json($th, 200);
@@ -23,7 +24,7 @@ class getScholars extends Controller
      }
      public function getScholarsDetail(Request $request){
              $scholarsId=$request->query('scholarsId');
-             $scholarsData=scholars::find($scholarsId);
+             $scholarsData=scholars::with('educationDetail.institution')->findOrFail($scholarsId);
              return $scholarsData?  response()->json($scholarsData, 200)
                                  :  response()->json(null,404);
      }

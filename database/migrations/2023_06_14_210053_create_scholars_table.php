@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('birth_place')->nullable();
             $table->string('family')->nullable();
             $table->string('children')->nullable();
+            $table->string('knowledge')->nullable();
             $table->string('founder')->nullable();
             $table->timestamps();
         });

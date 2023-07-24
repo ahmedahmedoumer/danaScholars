@@ -26,6 +26,7 @@ class educationDetailsFactory extends Factory
             'scholars_id'=>$this->faker->randomElement($scholarsId),
             'institutions_id'=>$this->faker->randomElement($institutionId),
             'education_categories_id'=>$this->faker->randomElement($educationCategoryId),
+            'course_studied'=>$this->faker->title(),
             'detail_description'=>$this->faker->sentence(),
             'years_start'=>now(),
             'years_end'=>now()

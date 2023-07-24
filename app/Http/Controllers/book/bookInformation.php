@@ -24,9 +24,11 @@ class bookInformation extends Controller
       return Storage::exists($filePath) ? Storage::download($filePath,$fileName)
                                         : abort(404);
     }
-    public function getAllBooks()
+    public function getAllBooks(Request $request)
     {
-        $books=books::all();
+        $page=$request->query('page');
+        $perPage=$request->query('perPage');
+        $books=books::paginate(page:$page,perPage:$perPage);
         return response()->json($books,200);
     }
     public function getBookDetail(Request $request)
