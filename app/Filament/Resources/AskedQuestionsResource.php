@@ -20,7 +20,7 @@ class AskedQuestionsResource extends Resource
 {
     protected static ?string $model = askedQuestions::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function form(Form $form): Form
     {

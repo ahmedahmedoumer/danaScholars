@@ -22,7 +22,7 @@ class InstitutionResource extends Resource
 {
     protected static ?string $model = institution::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-cake';
 
     public static function form(Form $form): Form
     {

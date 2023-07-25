@@ -10,6 +10,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\TextArea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DatePicker;
 use Filament\Resources\Table;
@@ -21,7 +22,7 @@ class ScholarsResource extends Resource
 {
     protected static ?string $model = scholars::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {
@@ -34,10 +35,13 @@ class ScholarsResource extends Resource
                 TextInput::make('birth_place')->required(),
                 TextInput::make('family')->required(),
                 TextInput::make('children')->required(),
+                TextInput::make('knowledge')->required(),
                 TextInput::make('founder')->label('founder of')->required(),
                 DatePicker::make('birth_date')->label('birth date'),
                 DatePicker::make('death_date')->label('birth date'),
                 FileUpload::make('photo')->label('image'),
+                TextArea::make('description')->required()->maxLength(255),
+
             ]);
     }
 
