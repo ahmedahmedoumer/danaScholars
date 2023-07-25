@@ -18,7 +18,7 @@ class institutionFactory extends Factory
     {
         return [
             //
-            'name'=>$this->faker->name(),
+            'name'=>$this->faker->name(10),
             'location'=>$this->faker->address(),
             'founded_on'=>now(),
             'type_of_institution'=>$this->faker->randomElement(['institution type 1','institution type 2','institution type 3','institution type 4']),

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\scholars;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\scholars;
+use App\Models\institution;
+use App\Models\books;
+use DB;
 use App\Models\scholarsInstitute;
 use App\Models\educationDetails;
 
@@ -48,12 +51,22 @@ class getScholars extends Controller
         }
         public function searchScholars(Request $request)
         {
-          $scholarsName=$request->query('scholarsName');
-          $scholars=scholars::where('fname','LIKE','%'.$scholarsName.'%')
-                            ->orWhere('lname','LIKE','%'.$scholarsName.'%')
-                            ->get();
-             return ($scholars->count())!==0 ?  response()->json($scholars, 200)
+          $searchValue=$request->query('searchValue');
+          $scholarsData=scholars::select('fname as result',DB::raw('"scholars" as type'))
+                                 ->where('fname','LIKE','%'.$searchValue.'%')
+                                 ->orWhere('lname','LIKE','%'.$searchValue.'%')
+                                 ->orWhere('mothers_name','LIKE','%'.$searchValue.'%')
+                                 ->orWhere('family','LIKE','%'.$searchValue.'%')->get();
+          $bookData=books::select('book_name as result',  DB::raw('"books" as type'))
+                           ->where('book_name','LIKE','%'.$searchValue.'%')
+                           ->orWhere('description','LIKE','%'.$searchValue.'%')->get();
+          $institutData=institution::select('name as result',DB::raw("'institution' as type"))
+                              ->where('name','LIKE','%'.$searchValue.'%')
+                              ->orWhere('description','LIKE','%'.$searchValue.'%')
+                              ->orWhere('location','LIKE','%'.$searchValue.'%')->get();
+           $unionData=$scholarsData->union($bookData)->union($institutData);
+                              return response()->json($unionData);
+             return ($unionData->count())!==0 ?  response()->json($unionData, 200)
                               :  response()->json('notFound',404);
         }
-
 }

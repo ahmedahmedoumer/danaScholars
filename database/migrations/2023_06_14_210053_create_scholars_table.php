@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('children')->nullable();
             $table->string('knowledge')->nullable();
             $table->string('founder')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

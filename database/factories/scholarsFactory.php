@@ -18,8 +18,8 @@ class scholarsFactory extends Factory
     {
         return [
             //
-            'fname'=>$this->faker->name(),
-            'lname'=>$this->faker->name(),
+            'fname'=>$this->faker->name(8),
+            'lname'=>$this->faker->name(8),
             'mothers_name'=>$this->faker->name(),
             'birth_date'=>now(),
             'death_date'=>now(),
@@ -28,6 +28,7 @@ class scholarsFactory extends Factory
             'family'=>$this->faker->name(),
             'knowledge'=>$this->faker->title(),
             'children'=>$this->faker->sentence(),
+            'description'=>$this->faker->sentence(),
             'founder'=>$this->faker->randomElement(['company1','company2','company3'])
         ];
     }
