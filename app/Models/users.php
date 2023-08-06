@@ -26,4 +26,8 @@ class users extends Model
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getImg($value){
+        return env('APP_URL').'/'.$value;
+    }
 }

@@ -23,7 +23,7 @@ class scholarsFactory extends Factory
             'mothers_name'=>$this->faker->name(),
             'birth_date'=>now(),
             'death_date'=>now(),
-            'photo'=>'images.png',
+            'photo'=>'/storage/images/images.jpg',
             'birth_place'=>$this->faker->address(),
             'family'=>$this->faker->name(),
             'knowledge'=>$this->faker->title(),
