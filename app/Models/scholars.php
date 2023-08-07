@@ -17,8 +17,8 @@ class scholars extends Model
       {
         return $this->hasMany(scholarsInstitute::class,'scholars_id');
       }
-      public function getPhoto($value)
+      public function getPhotoAttribute($value)
       {
-        return env('APP_URL').'/'.$value;
+        return $value ? env('APP_URL').'/'.$value : null;
       }
 }

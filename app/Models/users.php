@@ -27,7 +27,7 @@ class users extends Model
         'password' => 'hashed',
     ];
 
-    public function getImg($value){
-        return env('APP_URL').'/'.$value;
+    public function getImgAttribute($value){
+        return $value ? env('APP_URL').'/'.$value : null;
     }
 }
