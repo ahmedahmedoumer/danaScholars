@@ -24,7 +24,7 @@ class UserFactory extends Factory
             'phone_no'=>$this->faker->phoneNumber(),
             'status'=>$this->faker->randomElement(['active','not active']),
             'title'=>$this->faker->title(),
-            'photo'=>'/storage/images/user1.png',
+            'img'=>'/storage/images/user1.png',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         ];
     }
