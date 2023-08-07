@@ -28,6 +28,6 @@ class users extends Model
     ];
 
     public function getImgAttribute($value){
-        return $value ? env('APP_URL').'/'.$value : null;
+        return $value ? env('APP_URL').$value : null;
     }
 }
