@@ -18,4 +18,9 @@ class books extends Model
       public function AuthorName(){
         return $this->belongsTo(scholars::class,'author');
       }
+      public function getImgAttribute($value)
+      {
+        return $value ? env('APP_URL').$value : null;
+      }
+
 }

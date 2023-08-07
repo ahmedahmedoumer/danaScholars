@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('founded_on')->nullable();
             $table->string('type_of_institution')->nullable();
             $table->string('description')->nullable();
+            $table->string('photo')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

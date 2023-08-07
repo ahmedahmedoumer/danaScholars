@@ -26,4 +26,8 @@ class institution extends Model
     {
         return $this->hasMany(scholars::class,'scholars_id');
     }
+    public function getPhotoAttribute($value)
+    {
+        return $value ? env('APP_URL').$value:null;
+    }
 }

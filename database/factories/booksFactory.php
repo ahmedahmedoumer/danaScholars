@@ -27,7 +27,7 @@ class booksFactory extends Factory
             'description'=>$this->faker->sentence(),
             'sourceFile'=>'sourceFile.pdf',
             'written_on'=>now(),
-            'img'=>'user1.png',
+            'img'=>'/storage/images/book1.jpg',
             'book_category_id'=>$this->faker->randomElement($bookCategoryId)
 
         ];

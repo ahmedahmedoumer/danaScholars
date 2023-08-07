@@ -23,6 +23,7 @@ class institutionFactory extends Factory
             'founded_on'=>now(),
             'type_of_institution'=>$this->faker->randomElement(['institution type 1','institution type 2','institution type 3','institution type 4']),
             'description'=>$this->faker->sentence(),
+            'photo'=>'/storage/images/images.jpg',
             'status'=>$this->faker->randomElement(['active','not active'])
         ];
     }
