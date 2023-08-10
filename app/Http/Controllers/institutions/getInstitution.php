@@ -28,7 +28,6 @@ class getInstitution extends Controller
                 if(!$findInstitution){
                     return response()->json(null,404);
                 }
-                
                     $created_at=$findInstitution->created_at;
                     $yrsOfExperiance=$created_at->diffInYears(now());
                     $institute_students=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','student')->paginate(page:$pageForStudents,perPage:$perPageForLectures);
