@@ -70,6 +70,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
    #  to get the detail of the clicked book data 
    #   so the request url must attach the book's unique id with query using variable(bookId)
 
+  Route::get('/get-image-retrival/{fileName}',[storageController::class,'imageRetrive']);
+  # to get network image 
+  # so the request url must attach the image name at the end of url with orginal extension()
+
   Route::get('/books/randomSelect',[bookInformation::class,'randomBooksSelector']);
   # to get books by random selection to display on " you may Like " at books page 
 
