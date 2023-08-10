@@ -58,7 +58,7 @@ class getScholars extends Controller
                                  ->orWhere('mothers_name','LIKE','%'.$searchValue.'%')
                                  ->orWhere('family','LIKE','%'.$searchValue.'%')->get();
           $bookData=books::select('id','book_name as result',  DB::raw('"books" as type'))
-                           ->where('id','book_name','LIKE','%'.$searchValue.'%')
+                           ->where('book_name','LIKE','%'.$searchValue.'%')
                            ->orWhere('description','LIKE','%'.$searchValue.'%')->get();
           $institutData=institution::select('id','name as result',
                                      DB::raw("'institution' as type"))
@@ -66,7 +66,7 @@ class getScholars extends Controller
                                     ->orWhere('description','LIKE','%'.$searchValue.'%')
                                     ->orWhere('location','LIKE','%'.$searchValue.'%')->get();
            $unionData=$scholarsData->union($bookData)->union($institutData);
-                              return response()->json($unionData);
+                              // return response()->json($unionData);
              return ($unionData->count())!==0 ?  response()->json($unionData, 200)
                               :  response()->json('notFound',404);
         }

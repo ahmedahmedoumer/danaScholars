@@ -28,6 +28,7 @@ class getInstitution extends Controller
                 if(!$findInstitution){
                     return response()->json(null,404);
                 }
+                
                     $created_at=$findInstitution->created_at;
                     $yrsOfExperiance=$created_at->diffInYears(now());
                     $institute_students=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','student')->paginate(page:$pageForStudents,perPage:$perPageForLectures);
@@ -35,8 +36,10 @@ class getInstitution extends Controller
                     $instituteAwards=institution::with('institutionAwards')->whereHas('institutionAwards',function($query) use ($institutionId) {
                                                     $query->where('institutions_id',$institutionId);
                                                    })->count();
+                    $findInstitution['no_of_students']=$institute_students->count();
+                    $findInstitution['years_of_activity']=$yrsOfExperiance;
                 return response()->json([
-                                        'institutionDetail'=>institution::find($institutionId),
+                                        'institutionDetail'=>$findInstitution,
                                         'yrsOfExperiance'=>$yrsOfExperiance,
                                         'instituteStudents'=>$institute_students,
                                         'instituteLectures'=>$instituteLectures,
