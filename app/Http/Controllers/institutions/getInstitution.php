@@ -30,8 +30,10 @@ class getInstitution extends Controller
                 }
                     $created_at=$findInstitution->created_at;
                     $yrsOfExperiance=$created_at->diffInYears(now());
-                    $institute_students=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','student')->paginate(page:$pageForStudents,perPage:$perPageForLectures);
-                    $instituteLectures=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','lecture')->paginate(page:$pageForLectures,perPage:$perPageForLectures);
+                    $institute_students=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','student')->get();
+                    // ->paginate(page:$pageForStudents,perPage:$perPageForStudents);
+                    $instituteLectures=scholarsInstitute::with('scholars')->where('institutions_id',$institutionId)->where('relation_title','lecture')->get();
+                    // ->paginate(page:$pageForLectures,perPage:$perPageForLectures);
                     $instituteAwards=institution::with('institutionAwards')->whereHas('institutionAwards',function($query) use ($institutionId) {
                                                     $query->where('institutions_id',$institutionId);
                                                    })->count();
