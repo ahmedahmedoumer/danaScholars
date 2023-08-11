@@ -52,22 +52,37 @@ class getScholars extends Controller
         public function searchScholars(Request $request)
         {
           $searchValue=$request->query('searchValue');
-          $scholarsData=scholars::select('id','fname as result',DB::raw('"scholars" as type'))
+          $scholarsData=scholars::select('id','fname as result','description',DB::raw('"scholars" as type'))
                                  ->where('fname','LIKE','%'.$searchValue.'%')
                                  ->orWhere('lname','LIKE','%'.$searchValue.'%')
                                  ->orWhere('mothers_name','LIKE','%'.$searchValue.'%')
                                  ->orWhere('family','LIKE','%'.$searchValue.'%')->get();
-          $bookData=books::select('id','book_name as result',  DB::raw('"books" as type'))
+          $bookData=books::select('id','book_name as result','description',  DB::raw('"books" as type'))
                            ->where('book_name','LIKE','%'.$searchValue.'%')
                            ->orWhere('description','LIKE','%'.$searchValue.'%')->get();
-          $institutData=institution::select('id','name as result',
+          $institutData=institution::select('id','name as result','description',
                                      DB::raw("'institution' as type"))
                                     ->where('name','LIKE','%'.$searchValue.'%')
                                     ->orWhere('description','LIKE','%'.$searchValue.'%')
                                     ->orWhere('location','LIKE','%'.$searchValue.'%')->get();
-           $unionData=$scholarsData->union($bookData)->union($institutData);
-                              // return response()->json($unionData);
-             return ($unionData->count())!==0 ?  response()->json($unionData, 200)
+                                    
+         
+$mergedResults = collect();
+
+$maxCount = max($scholarsData->count(), $bookData->count(), $institutData->count());
+
+for ($i = 0; $i < $maxCount; $i++) {
+    if ($i < $scholarsData->count()) {
+        $mergedResults->push($scholarsData[$i]);
+    }
+    if ($i < $bookData->count()) {
+        $mergedResults->push($bookData[$i]);
+    }
+    if ($i < $institutData->count()) {
+        $mergedResults->push($institutData[$i]);
+    }
+}
+             return ($mergedResults->count())!==0 ?  response()->json($mergedResults, 200)
                               :  response()->json('notFound',404);
         }
 }
