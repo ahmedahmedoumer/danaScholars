@@ -34,7 +34,7 @@ class bookInformation extends Controller
     public function getBookDetail(Request $request)
     {
       $bookId=$request->query('bookId');
-      $findBook=books::with('booksCategory')->where('id',$bookId)->first();
+      $findBook=books::with('booksCategory','AuthorName')->where('id',$bookId)->first();
       return $findBook  ? response()->json($findBook,200)
                         : response()->json($findBook,400);
     }
