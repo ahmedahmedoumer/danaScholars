@@ -22,5 +22,9 @@ class books extends Model
       {
         return $value ? env('APP_URL').$value : null;
       }
+      public function getPhotoAttribute($value)
+      {
+        return $value ? env('APP_URL').$value : null;
+      }
 
 }
