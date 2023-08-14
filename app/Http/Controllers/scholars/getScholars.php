@@ -52,15 +52,15 @@ class getScholars extends Controller
         public function searchScholars(Request $request)
         {
           $searchValue=$request->query('searchValue');
-          $scholarsData=scholars::select('id','fname as result','description',DB::raw('"scholars" as type'))
+          $scholarsData=scholars::select('id','fname as result','description','photo',DB::raw('"scholars" as type'))
                                  ->where('fname','LIKE','%'.$searchValue.'%')
                                  ->orWhere('lname','LIKE','%'.$searchValue.'%')
                                  ->orWhere('mothers_name','LIKE','%'.$searchValue.'%')
                                  ->orWhere('family','LIKE','%'.$searchValue.'%')->get();
-          $bookData=books::select('id','book_name as result','description',  DB::raw('"books" as type'))
+          $bookData=books::select('id','book_name as result','img','description',  DB::raw('"books" as type'))
                            ->where('book_name','LIKE','%'.$searchValue.'%')
                            ->orWhere('description','LIKE','%'.$searchValue.'%')->get();
-          $institutData=institution::select('id','name as result','description',
+          $institutData=institution::select('id','name as result','description','photo',
                                      DB::raw("'institution' as type"))
                                     ->where('name','LIKE','%'.$searchValue.'%')
                                     ->orWhere('description','LIKE','%'.$searchValue.'%')
