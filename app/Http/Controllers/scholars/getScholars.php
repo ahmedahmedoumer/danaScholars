@@ -57,7 +57,7 @@ class getScholars extends Controller
                                  ->orWhere('lname','LIKE','%'.$searchValue.'%')
                                  ->orWhere('mothers_name','LIKE','%'.$searchValue.'%')
                                  ->orWhere('family','LIKE','%'.$searchValue.'%')->get();
-          $bookData=books::select('id','book_name as result','img','description',  DB::raw('"books" as type'))
+          $bookData=books::select('id','book_name as result','img as photo','description',  DB::raw('"books" as type'))
                            ->where('book_name','LIKE','%'.$searchValue.'%')
                            ->orWhere('description','LIKE','%'.$searchValue.'%')->get();
           $institutData=institution::select('id','name as result','description','photo',
