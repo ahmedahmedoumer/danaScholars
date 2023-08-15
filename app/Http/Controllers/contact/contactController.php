@@ -20,7 +20,7 @@ class contactController extends Controller
             'message'=>'required',
         ]);
         
-     $mail =   Mail::to('contact@danascholars.com')->send(new contactMail($request->all()));
+    //  $mail =   Mail::to('contact@danascholars.com')->send(new contactMail($request->all()));
             // dd($mail);
            return response()->json('successfully sent !!',200);
       }
